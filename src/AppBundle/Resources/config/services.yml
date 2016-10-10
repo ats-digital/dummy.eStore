@@ -1,0 +1,9 @@
+services:
+    importer.products:
+        class: AppBundle\Service\ProductImporterService
+        arguments: ['@doctrine.odm.mongodb.document_manager', '@guzzle.client.api_products', '@jms_serializer']        
+
+    command.importer.products:
+        class: AppBundle\Command\ImportProductsCommand
+        calls:
+            - [setContainer, ["@service_container"] ]
